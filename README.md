@@ -17,6 +17,9 @@ Try demo here - https://boss-profit-giants-blade.trycloudflare.com/
 ## Architecture Diagram
 <img width="820" alt="Screenshot 2025-06-30 at 6 27 15 AM" src="https://github.com/user-attachments/assets/ea9994b3-4859-40db-a6ef-09e5ff871089" />
 
+This app is powered by [Pipecat](https://github.com/pipecat-ai/pipecat) - an open-source Python framework for building real-time voice and multimodal conversational AI agents.
+
+
 ## Setup
 
 ### Backend Setup
