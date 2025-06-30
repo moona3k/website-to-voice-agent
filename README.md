@@ -2,6 +2,10 @@
 
 Convert any company website into an intelligent voice agent that acts as brand ambassador and captures leads 24/7.
 
+
+<img width="820" alt="Screenshot 2025-06-30 at 6 27 15 AM" src="https://github.com/user-attachments/assets/ea9994b3-4859-40db-a6ef-09e5ff871089" />
+
+
 ## What It Does
 
 1. **Analyze any company website** → AI researches your business and products
