@@ -12,9 +12,9 @@ Try demo here - https://boss-profit-giants-blade.trycloudflare.com/
 1. **Analyze any company website** → AI researches your business and products
 2. **Generate voice agent** → Creates a custom AI rep based on brand data
 3. **Qualify leads live** → Engages callers in natural conversation
-4. **Capture leads** → Runs a post-analysis of transcript and saves result to Google Sheets
+4. **Capture leads** → Runs a post-call analysis of transcript and saves result to Google Sheets
 
-## Architecture diagram
+## Architecture Diagram
 <img width="820" alt="Screenshot 2025-06-30 at 6 27 15 AM" src="https://github.com/user-attachments/assets/ea9994b3-4859-40db-a6ef-09e5ff871089" />
 
 ## Setup
@@ -104,7 +104,7 @@ Try demo here - https://boss-profit-giants-blade.trycloudflare.com/
 3. **Enter website URL** (e.g., `terminix.com`, `mutualofomaha.com`)
 4. **AI generates custom voice agent** based on company analysis
 5. **Connect and test** the voice agent
-6. **Post-session analysis** runs on conversation transcript to extract lead intel
+6. **Post-call analysis** runs on conversation transcript to extract lead intel
 7. **Results saved** to Google Sheet with lead analysis details
 
 ## Requirements
