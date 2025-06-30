@@ -1,0 +1,37 @@
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Google service account credentials
+google_service_key.json
+*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Logs
+*.log
+logs/
+
+# Lead data
+leads/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+
+client/
