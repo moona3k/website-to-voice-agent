@@ -2,16 +2,20 @@
 
 Convert any company website into an intelligent voice agent that acts as brand ambassador and captures leads 24/7.
 
+Try demo here - https://boss-profit-giants-blade.trycloudflare.com/
 
-<img width="820" alt="Screenshot 2025-06-30 at 6 27 15 AM" src="https://github.com/user-attachments/assets/ea9994b3-4859-40db-a6ef-09e5ff871089" />
-
+<img width="1728" alt="Screenshot 2025-06-30 at 7 48 46 AM" src="https://github.com/user-attachments/assets/1c2325ac-3243-4b8a-9380-865205b24b08" />
 
 ## What It Does
+
 
 1. **Analyze any company website** → AI researches your business and products
 2. **Generate voice agent** → Creates a custom AI rep based on brand data
 3. **Qualify leads live** → Engages callers in natural conversation
-4. **Capture to CRM** → Runs a post-analysis of transcript and saves result to Google Sheets
+4. **Capture leads** → Runs a post-analysis of transcript and saves result to Google Sheets
+
+## Architecture diagram
+<img width="820" alt="Screenshot 2025-06-30 at 6 27 15 AM" src="https://github.com/user-attachments/assets/ea9994b3-4859-40db-a6ef-09e5ff871089" />
 
 ## Setup
 
