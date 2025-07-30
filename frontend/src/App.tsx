@@ -8,18 +8,204 @@ import { useRTVIClient } from './hooks/useRTVIClient';
 import { LEAD_QUALIFICATION_TEMPLATE } from './constants/prompts';
 import type { AgentConfig, LogEntry, WebsiteResearchState } from './types';
 
+// iTelecom Services demo configuration
+const ITELECOM_CONFIG: AgentConfig = {
+  name: 'Gaia',
+  legalName: 'iTelecom Services',
+  brandName: 'iTelecom Services',
+  brandVision: 'Delivering reliable, high-speed connectivity and entertainment solutions to residential customers, bringing families together through seamless communication and entertainment experiences.',
+  industry: 'Residential Telecommunications and Bundled Services',
+  products: `iTelecom Services offers comprehensive residential telecommunications packages designed to meet modern household needs:
+
+- **Super Bundle Plan**: Our flagship offering combining high-speed internet (up to 1 Gbps), streaming TV with 200+ channels including premium content, unlimited home phone service, and basic smart home security monitoring. Starting at $139.99/month with 2-year price guarantee.
+
+- **Internet Plus**: High-speed fiber internet (300 Mbps - 1 Gbps) with streaming TV essentials (100+ channels). Starting at $99.99/month.
+
+- **Basic Internet**: Reliable broadband service (100-300 Mbps) perfect for smaller households. Starting at $59.99/month.
+
+- **Add-On Services**: Premium streaming packages (HBO Max, Netflix, Disney+), Advanced smart home security with 24/7 monitoring, Mobile phone service (powered by major carrier network), Whole-home WiFi mesh system`,
+  valueProps: 'iTelecom Services combines cutting-edge fiber technology with competitive bundled pricing, offering families everything they need for work, education, and entertainment in one convenient package with a single bill',
+  targetCustomers: 'Families and households looking for reliable, high-speed connectivity with entertainment options, particularly those working or learning from home',
+  tone: `<identity>
+You are Gaia, an AI sales representative for iTelecom Services. You help potential customers discover our bundled telecommunications solutions and determine service availability in their area.
+</identity>
+
+<company_context>
+• Company: iTelecom Services
+• Mission: Delivering reliable, high-speed connectivity and entertainment solutions to residential customers, bringing families together through seamless communication and entertainment experiences.
+• Industry: Residential Telecommunications and Bundled Services
+• Solutions: iTelecom Services offers comprehensive residential telecommunications packages designed to meet modern household needs:
+
+- **Super Bundle Plan**: Our flagship offering combining high-speed internet (up to 1 Gbps), streaming TV with 200+ channels including premium content, unlimited home phone service, and basic smart home security monitoring. Starting at $139.99/month with 2-year price guarantee.
+
+- **Internet Plus**: High-speed fiber internet (300 Mbps - 1 Gbps) with streaming TV essentials (100+ channels). Starting at $99.99/month.
+
+- **Basic Internet**: Reliable broadband service (100-300 Mbps) perfect for smaller households. Starting at $59.99/month.
+
+- **Add-On Services**: 
+  - Premium streaming packages (HBO Max, Netflix, Disney+)
+  - Advanced smart home security with 24/7 monitoring
+  - Mobile phone service (powered by major carrier network)
+  - Whole-home WiFi mesh system
+
+• Service Areas: Currently available in select metropolitan and suburban areas across 12 states, with ongoing network expansion
+• Value Proposition: iTelecom Services combines cutting-edge fiber technology with competitive bundled pricing, offering families everything they need for work, education, and entertainment in one convenient package with a single bill
+• Target Customers: Families and households looking for reliable, high-speed connectivity with entertainment options, particularly those working or learning from home
+</company_context>
+
+<communication_style>
+Friendly, proactive, and solution-focused. As a sales representative, you're enthusiastic about helping customers find the perfect package while being respectful of their time and budget. You speak with energy and genuine interest in solving their connectivity needs.
+
+VOICE CONVERSATION PRINCIPLES:
+• Keep responses concise - under 30 words for natural conversation
+• Be proactive in guiding the conversation toward solutions
+• Show enthusiasm without being pushy
+• Ask ONE clear question at a time
+• Actively listen and tailor recommendations to their needs
+• NEVER list long zip code ranges - keep availability responses short and conversational
+</communication_style>
+
+<conversation_objectives>
+PRIMARY: Determine service availability and match customers with the right bundle
+SECONDARY: Capture contact information for follow-up or service activation
+
+SALES APPROACH:
+• Warmly introduce yourself and iTelecom Services
+• Ask about their current services and pain points
+• Collect zip code early to verify service availability
+• Present relevant bundle options based on their needs
+• Handle objections with empathy and alternatives
+• Secure contact information for next steps
+</conversation_objectives>
+
+<service_availability>
+ZIP CODE VERIFICATION:
+• Always verify service availability by zip code before discussing specific plans
+• Frame it naturally: "To check what great deals are available for you, what's your zip code?"
+• Confirm accuracy: "Just to make sure I have it right, that's [repeat digits slowly], correct?"
+
+ELIGIBLE AREAS (Examples):
+• Major cities in California, Texas, Florida, New York, and Illinois
+• Always check the specific zip code - don't list all ranges
+• Just say "We serve many areas across 12 states and are expanding rapidly"
+
+HANDLING UNAVAILABLE AREAS:
+• Express understanding of disappointment
+• Offer to add them to priority notification list
+• Collect mobile number for future updates via text
+• Maintain positive relationship for future opportunity
+</service_availability>
+
+<contact_collection_strategy>
+FOR ELIGIBLE AREAS:
+• "Perfect! I can have one of our specialists call you to schedule installation and answer any questions. What's the best number to reach you?"
+• "Would you prefer a call today or tomorrow to finalize everything?"
+
+FOR INELIGIBLE AREAS:
+• "While we're not there yet, I can add you to our priority list for when service arrives"
+• "We'll send you a quick text the moment we're available in your area"
+• "What's the best mobile number for those updates?"
+
+ALWAYS:
+• Confirm contact details by repeating them back
+• Ask about preferred contact time if scheduling callback
+• Thank them for their interest regardless of outcome
+</contact_collection_strategy>
+
+<conversation_flow>
+OPENING: "Hi! This is Gaia from iTelecom Services. I'd love to help you discover how our super bundle can transform your home connectivity. What brought you to us today?"
+
+DISCOVERY: Listen for needs (streaming, internet speed, working from home, current frustrations)
+
+AVAILABILITY CHECK: "I'm excited to show you what we can offer! To check the best deals in your area, what's your 5-digit zip code?"
+
+VALUE PRESENTATION: Based on availability and needs, present appropriate bundle with enthusiasm
+
+OBJECTION HANDLING: Address concerns about price, switching, or features with understanding
+
+CLOSE: Secure contact information and set clear next steps
+
+WRAP-UP: Confirm all details and thank them warmly
+</conversation_flow>
+
+<behavioral_guidelines>
+DO:
+• Lead with enthusiasm about helping them save money and get better service
+• Ask for zip code naturally early in conversation
+• Paint a picture of how our services improve daily life
+• Create urgency with limited-time offers when appropriate
+• Always get contact information before ending call
+• Sound genuinely excited about our services
+
+DON'T:
+• Discuss specific plans before confirming service availability
+• Sound robotic or overly scripted
+• Give up after first objection
+• Make promises about exact speeds or channel lineups
+• Rush through the availability check
+• End call without attempting to collect contact info
+
+CONVERSATION ENDING:
+• If the caller says goodbye, thanks you, or indicates they're done (e.g., "that's all I needed", "I have to go", "thanks for the info", "let's call it a day", "I'm good"), call the end_conversation function
+• Look for natural conversation endings and don't extend unnecessarily
+• Always end on a positive, professional note
+• When you've completed the sales interaction (collected info or added to waitlist), end the call gracefully
+
+REMEMBER: Every call is an opportunity to either gain a new customer or build our future customer base. Even if service isn't available yet, leave them excited about iTelecom Services!
+</behavioral_guidelines>
+
+<example_responses>
+DISCOVERY:
+"That's frustrating when your internet slows down during important video calls! Our fiber network is built to handle your whole family online at once."
+
+AVAILABILITY QUESTION:
+"We serve many areas across 12 states and are expanding rapidly! What's your zip code so I can check if we're in your area yet?"
+
+AVAILABLE:
+"Great news! Our super bundle is available in your area with some fantastic promotional pricing right now."
+
+UNAVAILABLE:
+"We're not in your area yet, but we're expanding rapidly! I can add you to our priority list and text you the moment we arrive."
+
+VALUE:
+"With our super bundle at $139.99, you'll get lightning-fast gigabit internet, over 200 channels including all the sports and premium shows, plus free installation this month!"
+
+CLOSING:
+"I'll have Sarah, one of our installation specialists, call you tomorrow morning to schedule your installation. You're going to love the difference iTelecom makes!"
+</example_responses>`,
+  websiteUrl: 'http://itelecomservice.com'
+};
+
 function App() {
+  // Check if we're in demo mode (itelecom-services path)
+  const isDemoMode = window.location.pathname === '/itelecom-services';
+  
   const [sessionId, setSessionId] = useState<string | null>(null);
-  const [config, setConfig] = useState<AgentConfig>({
+  // Use iTelecom config in demo mode, otherwise use default Invoca config
+  const [config, setConfig] = useState<AgentConfig>(isDemoMode ? ITELECOM_CONFIG : {
     name: 'Gaia',
     legalName: 'Invoca, Inc.',
     brandName: 'Invoca',
     brandVision: 'Empowering businesses to connect with their customers in more meaningful ways through AI-powered conversation intelligence, driving growth and enhancing customer experiences.',
     industry: 'AI-Powered Revenue Execution and Conversation Intelligence',
-    products: 'Invoca offers AI-powered conversation intelligence solutions designed to connect marketing and sales teams, optimize the buying journey, and drive revenue. Key offerings include:\n\n- **Pro Plan**: Includes 6,000 annual local or toll-free numbers and 5 custom Signals. Features encompass dynamic number tracking, call recording, custom IVRs, offline conversion and revenue import, no-code ad campaign optimization integrations, APIs and webhooks, unanswered call and voicemail detection, and real-time alerts on important call moments. Optional add-ons: Signal AI conversation analytics suite, PreSense, AI-Powered Quality Management, advanced IVR features, and premium integrations (e.g., Salesforce CRM, Adobe Experience Cloud).\n\n- **Enterprise Plan**: Includes 12,000 annual local or toll-free numbers and 50 custom Signals. Offers all Pro Plan features plus enhanced digital data capture, additional digital and social advertising integrations, advanced IVR features, advanced report access, SAML single sign-on user authentication, and a sandbox demo environment. Optional add-ons: Signal AI conversation analytics suite, PreSense, AI-Powered Quality Management, and premium integrations.\n\n- **Signal AI**: Provides insights into customers, campaigns, and contact center performance with features like Signal AI Studio, keyword spotting, Signal AI Discovery, best-in-class transcripts, redaction, AI call summaries, and sentiment analysis.\n\n- **Quality Management & Agent Coaching**: Offers AI-powered quality management and call scorecards, Agent Voice ID, and agent coaching to enhance call handling, quality, and compliance.\n\n- **PreSense**: Sends real-time insights from customers\' digital journeys to contact centers, enabling efficient, personalized, and proactive support.\n\n- **Integrations**: Extensive library to turn conversation data into automated actions, including integrations with platforms like Salesforce CRM and Adobe Experience Cloud.\n\nSpecific pricing details are available upon request.',
-    valueProps: 'Invoca stands out with its AI-driven conversation intelligence that seamlessly connects marketing and sales teams, providing real-time insights to optimize the buying journey and drive revenue. The platform\'s deep integrations with leading technology platforms enable businesses to link paid media investments directly to revenue, improve digital engagement, and deliver exceptional buyer experiences. Invoca\'s commitment to innovation, customer success, and a collaborative culture ensures continuous improvement and value delivery.',
+    products: `Invoca offers AI-powered conversation intelligence solutions designed to connect marketing and sales teams, optimize the buying journey, and drive revenue. Key offerings include:
+
+- **Pro Plan**: Includes 6,000 annual local or toll-free numbers and 5 custom Signals. Features encompass dynamic number tracking, call recording, custom IVRs, offline conversion and revenue import, no-code ad campaign optimization integrations, APIs and webhooks, unanswered call and voicemail detection, and real-time alerts on important call moments. Optional add-ons: Signal AI conversation analytics suite, PreSense, AI-Powered Quality Management, advanced IVR features, and premium integrations (e.g., Salesforce CRM, Adobe Experience Cloud).
+
+- **Enterprise Plan**: Includes 12,000 annual local or toll-free numbers and 50 custom Signals. Offers all Pro Plan features plus enhanced digital data capture, additional digital and social advertising integrations, advanced IVR features, advanced report access, SAML single sign-on user authentication, and a sandbox demo environment. Optional add-ons: Signal AI conversation analytics suite, PreSense, AI-Powered Quality Management, and premium integrations.
+
+- **Signal AI**: Provides insights into customers, campaigns, and contact center performance with features like Signal AI Studio, keyword spotting, Signal AI Discovery, best-in-class transcripts, redaction, AI call summaries, and sentiment analysis.
+
+- **Quality Management & Agent Coaching**: Offers AI-powered quality management and call scorecards, Agent Voice ID, and agent coaching to enhance call handling, quality, and compliance.
+
+- **PreSense**: Sends real-time insights from customers' digital journeys to contact centers, enabling efficient, personalized, and proactive support.
+
+- **Integrations**: Extensive library to turn conversation data into automated actions, including integrations with platforms like Salesforce CRM and Adobe Experience Cloud.
+
+Specific pricing details are available upon request.`,
+    valueProps: `Invoca stands out with its AI-driven conversation intelligence that seamlessly connects marketing and sales teams, providing real-time insights to optimize the buying journey and drive revenue. The platform's deep integrations with leading technology platforms enable businesses to link paid media investments directly to revenue, improve digital engagement, and deliver exceptional buyer experiences. Invoca's commitment to innovation, customer success, and a collaborative culture ensures continuous improvement and value delivery.`,
     targetCustomers: 'Invoca serves enterprise-level businesses across various industries, including automotive, financial services, healthcare, home services, insurance, retail, telecom, and travel & hospitality. Ideal customers are organizations seeking to enhance their marketing and sales performance through AI-powered conversation intelligence, aiming to optimize customer interactions, improve conversion rates, and drive revenue growth.',
-    tone: 'Professional yet approachable, tech-savvy without being intimidating. Invoca communicates with clarity and confidence, emphasizing collaboration, innovation, and customer success. The brand\'s voice reflects its commitment to helping businesses thrive through advanced AI solutions, fostering a sense of partnership and trust with its audience.'
+    tone: `Professional yet approachable, tech-savvy without being intimidating. Invoca communicates with clarity and confidence, emphasizing collaboration, innovation, and customer success. The brand's voice reflects its commitment to helping businesses thrive through advanced AI solutions, fostering a sense of partnership and trust with its audience.`
   });
 
   const [research, setResearch] = useState<WebsiteResearchState>({
@@ -31,7 +217,7 @@ function App() {
 
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [activeTab, setActiveTab] = useState<'conversation' | 'prompt'>('conversation');
-  const [isModalOpen, setIsModalOpen] = useState(true); // Start with modal open
+  const [isModalOpen, setIsModalOpen] = useState(!isDemoMode); // Hide modal in demo mode
   const [showLeadResults, setShowLeadResults] = useState(false);
 
   const addLog = useCallback((message: string, type: LogEntry['type'] = 'system') => {
@@ -49,7 +235,7 @@ function App() {
   useEffect(() => {
     const initSession = async () => {
       try {
-        const BACKEND_URL = 'https://representatives-ld-variable-tom.trycloudflare.com';
+        const BACKEND_URL = 'https://dropped-stuart-pursue-well.trycloudflare.com';
         // const BACKEND_URL = 'http://localhost:7860';
         const response = await fetch(`${BACKEND_URL}/start-session`, {
           method: 'POST',
@@ -78,6 +264,49 @@ function App() {
     onDisconnected: handleShowResultsModal
   });
 
+  // Auto-configure and connect in demo mode
+  useEffect(() => {
+    if (isDemoMode && sessionId && !isConnected && !isConnecting) {
+      const setupDemoAgent = async () => {
+        try {
+          addLog('Initializing iTelecom Services demo agent...');
+          
+          const BACKEND_URL = 'https://dropped-stuart-pursue-well.trycloudflare.com';
+          // const BACKEND_URL = 'http://localhost:7860';
+          
+          // Configure agent with iTelecom config
+          addLog('Configuring iTelecom agent...');
+          const configResponse = await fetch(`${BACKEND_URL}/configure-agent`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+              session_id: sessionId,
+              config: ITELECOM_CONFIG 
+            })
+          });
+          
+          if (!configResponse.ok) {
+            throw new Error('Failed to configure iTelecom agent');
+          }
+
+          addLog('iTelecom agent configured successfully');
+          
+          // Auto-connect to the agent
+          addLog('Connecting to iTelecom agent...');
+          await connect();
+          addLog('Connected to iTelecom Services agent!');
+          
+        } catch (error) {
+          addLog(`Demo setup error: ${(error as Error).message}`, 'error');
+        }
+      };
+      
+      // Small delay to ensure session is fully initialized
+      const timer = setTimeout(setupDemoAgent, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isDemoMode, sessionId, isConnected, isConnecting, connect, addLog]);
+
   const handleGenerateAgent = useCallback(async () => {
     if (!research.url.trim()) {
       addLog('Please enter a website URL', 'error');
@@ -94,7 +323,7 @@ function App() {
       setResearch(prev => ({ ...prev, isProcessing: true, processingStep: 'Analyzing website...' }));
       addLog(`Analyzing company: ${research.url}`);
       
-      const BACKEND_URL = 'https://representatives-ld-variable-tom.trycloudflare.com';
+      const BACKEND_URL = 'https://dropped-stuart-pursue-well.trycloudflare.com';
       // const BACKEND_URL = 'http://localhost:7860';
       
       const analysisResponse = await fetch(`${BACKEND_URL}/analyze-company`, {
@@ -306,7 +535,7 @@ function App() {
       <LeadResultsModal
         isOpen={showLeadResults}
         onClose={() => setShowLeadResults(false)}
-        websiteUrl={research.url}
+        websiteUrl={isDemoMode ? config.websiteUrl || 'http://itelecomservice.com' : research.url}
         systemPrompt={LEAD_QUALIFICATION_TEMPLATE}
       />
     </div>

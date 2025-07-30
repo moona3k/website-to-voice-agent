@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { RTVIClient } from '@pipecat-ai/client-js';
 import { WebSocketTransport } from '@pipecat-ai/websocket-transport';
 
-const BACKEND_URL = 'https://representatives-ld-variable-tom.trycloudflare.com';
+const BACKEND_URL = 'https://dropped-stuart-pursue-well.trycloudflare.com';
 // const BACKEND_URL = 'http://localhost:7860';
 
 interface UseRTVIClientProps {

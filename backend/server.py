@@ -189,7 +189,7 @@ async def bot_connect(request: Request) -> Dict[Any, Any]:
     if not session_id or not get_session(session_id):
         return {"error": "Invalid session"}
     
-    tunnel_host = "representatives-ld-variable-tom.trycloudflare.com"
+    tunnel_host = "dropped-stuart-pursue-well.trycloudflare.com"
     return {"ws_url": f"wss://{tunnel_host}/ws/{session_id}"}
 
 
